@@ -42,10 +42,13 @@ int main(void) {
 
 	while (1) {
 		wait(secs);
+		system("notify-send -t 5000 \"Time's Up!\" \"Locking screen in 10 seconds...\"");
+		wait(5);
 		printf("Timeup!\n");
 		system("loginctl lock-session");
 		wait(cooldown);
 		system("loginctl unlock-session");
+		system("notify-send -t 5000 \"Welcome Back!\" \"Keep working...\"");
 		printf("Welcome back!\n");
 	}
 }
