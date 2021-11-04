@@ -37,3 +37,4 @@ It will prompt you to set the time for the working and cooldown periods, then it
 
 - Add macOS and Windows support; this one is trickier since I don't really have a Mac to test my program with
 
+- Use C libraries for sending notifications and locking system instead of executing shell commands with system()
