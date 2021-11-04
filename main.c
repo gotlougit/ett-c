@@ -35,11 +35,14 @@ void wait(int diff) {
 }
 
 void notify(char *msg) {
-	notify_init("Eye Time Tracker");
-	NotifyNotification * Hello = notify_notification_new("Eye Time Tracker",msg,"dialog-information");
-	notify_notification_show(Hello, NULL);
-	g_object_unref(G_OBJECT(Hello));
+
+	char *heading = "Eye Time Tracker";
+	notify_init(heading);
+	NotifyNotification * notification = notify_notification_new(heading,msg,"dialog-information");
+	notify_notification_show(notification, NULL);
+	g_object_unref(G_OBJECT(notification));
 	notify_uninit();
+
 }
 
 int main(void) {
