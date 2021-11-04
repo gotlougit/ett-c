@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <libnotify/notify.h>
 
 int gettime(void) {
 
@@ -33,6 +34,14 @@ void wait(int diff) {
 	}
 }
 
+void notify(char *msg) {
+	notify_init("Eye Time Tracker");
+	NotifyNotification * Hello = notify_notification_new("Eye Time Tracker",msg,"dialog-information");
+	notify_notification_show(Hello, NULL);
+	g_object_unref(G_OBJECT(Hello));
+	notify_uninit();
+}
+
 int main(void) {
 
 	printf("Enter time for working now-->\n");
@@ -42,13 +51,13 @@ int main(void) {
 
 	while (1) {
 		wait(secs);
-		system("notify-send -t 5000 \"Time's Up!\" \"Locking screen in 10 seconds...\"");
+		notify("Time's Up! Locking screen in 10 seconds...");
 		wait(5);
 		printf("Timeup!\n");
 		system("loginctl lock-session");
 		wait(cooldown);
 		system("loginctl unlock-session");
-		system("notify-send -t 5000 \"Welcome Back!\" \"Keep working...\"");
+		notify("Welcome back!");
 		printf("Welcome back!\n");
 	}
 }
