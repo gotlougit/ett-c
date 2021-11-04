@@ -15,7 +15,7 @@ int gettime(void) {
 
 }
 
-int wait(int diff) {
+void wait(int diff) {
 
 	time_t start,end;
 	start = time(NULL);
@@ -27,7 +27,6 @@ int wait(int diff) {
 		float x = difftime(end,start);
 		if (x >= diff) {
 			running = 0;
-			return 0;
 			break;
 		}
 
@@ -39,5 +38,8 @@ int main(void) {
 	int secs = gettime();
 	wait(secs);
 	printf("Timeup!\n");
-
+	system("loginctl lock-session");
+	wait(10);
+	system("loginctl unlock-session");
+	printf("Welcome back!\n");
 }
