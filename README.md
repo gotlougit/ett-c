@@ -15,7 +15,7 @@ the computer up from sleep like this, so make sure the cooldown period isn't too
 
 ## Dependencies
 
-In order to send notifications, ```notify-send``` has to be installed. It's available in almost all Linux distributions.
+In order to send notifications, ```libnotify``` has to be installed. It's available in almost all Linux distributions. Note: for Fedora while testing this program, I had to install ```libnotify-devel``` for the program to work. I'd recommend installing an equivalent on other distros as well
 
 For the auto locking and unlocking, ```loginctl``` is used, which is a way to interact with systemd's login service. So, systemd is also required.
 
@@ -23,7 +23,7 @@ For the auto locking and unlocking, ```loginctl``` is used, which is a way to in
 
 You can simply compile the program as such (note: only gcc has been tested to work)
 
-```gcc -lm main.c -o ett```
+```make```
 
 Then, run ```ett```
 
@@ -37,4 +37,4 @@ It will prompt you to set the time for the working and cooldown periods, then it
 
 - Add macOS and Windows support; this one is trickier since I don't really have a Mac to test my program with
 
-- Use C libraries for sending notifications and locking system instead of executing shell commands with system()
+- Use C libraries for locking system instead of executing shell commands with system()
