@@ -1,14 +1,21 @@
 #include "inputs.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 
-int main(void) {
+int gettime(void) {
 
 	int secs = 0;
-
+	
 	secs += get_spec_int("Hours to wait (0-24): ",0,24) * 3600;
 	secs += get_spec_int("Minutes to wait (0-60): ",0,60) * 60;
 	secs += get_spec_int("Seconds to wait (0-60): ",0,60);
+
+	return secs;
+
+}
+
+int wait(int diff) {
 
 	time_t start,end;
 	start = time(NULL);
@@ -18,13 +25,19 @@ int main(void) {
 
 		end = time(NULL);
 		float x = difftime(end,start);
-		printf("%f\n",x);
-		if (x >= secs) {
+		if (x >= diff) {
 			running = 0;
-			printf("TIMEUP!\n");
+			return 0;
 			break;
 		}
 
 	}
+}
+
+int main(void) {
+
+	int secs = gettime();
+	wait(secs);
+	printf("Timeup!\n");
 
 }
