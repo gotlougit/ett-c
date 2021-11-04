@@ -60,3 +60,25 @@ int get_int(char *msg) {
 	return n;
 
 }
+
+int get_positive_int(char *msg) {
+	int n = get_int(msg);
+	if (n>=0) {
+		return n;
+	} else {
+		return 0;
+	}
+}
+
+/*Like get_int, but you can easily restrict what types of numbers you want
+* If proper number isn't obtained, it returns lower range value
+*/
+
+int get_spec_int(char *msg, int lower, int higher) {
+	int n = get_int(msg);
+	if (n >= lower && n <= higher) {
+		return n;
+	} else {
+		return lower;
+	}
+}
