@@ -7,9 +7,9 @@ int gettime(void) {
 
 	int secs = 0;
 	
-	secs += get_spec_int("Hours to wait (0-24): ",0,24) * 3600;
-	secs += get_spec_int("Minutes to wait (0-60): ",0,60) * 60;
-	secs += get_spec_int("Seconds to wait (0-60): ",0,60);
+	secs += get_spec_int("Hours (0-24): ",0,24) * 3600;
+	secs += get_spec_int("Minutes (0-60): ",0,60) * 60;
+	secs += get_spec_int("Seconds (0-60): ",0,60);
 
 	return secs;
 
@@ -35,11 +35,17 @@ void wait(int diff) {
 
 int main(void) {
 
+	printf("Enter time for working now-->\n");
 	int secs = gettime();
-	wait(secs);
-	printf("Timeup!\n");
-	system("loginctl lock-session");
-	wait(10);
-	system("loginctl unlock-session");
-	printf("Welcome back!\n");
+	printf("Enter time for cooldown now-->\n");
+	int cooldown = gettime();
+
+	while (1) {
+		wait(secs);
+		printf("Timeup!\n");
+		system("loginctl lock-session");
+		wait(cooldown);
+		system("loginctl unlock-session");
+		printf("Welcome back!\n");
+	}
 }
