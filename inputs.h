@@ -1,4 +1,3 @@
-//A header file for getting safe inputs from user
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>

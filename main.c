@@ -33,12 +33,6 @@ void wait(int diff) {
 	}
 }
 
-void notify(char *msg) {
-
-	system("notify-send -t 5000 
-
-}
-
 int main(void) {
 
 	printf("Enter time for working now-->\n");
